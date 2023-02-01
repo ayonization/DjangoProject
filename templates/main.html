@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--* This is the main html template, other templates extend this template-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Devsearch</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+    </head>
+    <body>
+        
+        <h1> This is the main template </h1> 
+        <!--* Include navbar in main template-->
+        {% include 'navbar.html' %}
+        
+        <!--* Specify where data from templates which extend this template goes-->
+        {% block content%}
+
+        {% endblock content%}
+        
+        <p> Footer </p>
+        
+    </body>
+</html>
