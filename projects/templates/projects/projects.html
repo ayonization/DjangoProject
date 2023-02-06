@@ -2,29 +2,53 @@
 
 {% block content %}
 <h1> 
-    Project template
+    Projects
 </h1>
 
-<p> Hello you are on the {{page}} page </p>
+<!-- <p> Hello you are on the {{page}} page </p> -->
 
-<p> 
+<!-- <p> 
     {%if number < 11 %}
     Number is less than or equal to 10
+    {% else %}
+    Number is less than 10
     {%endif%}
- </p>
+ </p> -->
 
 <p> List of projects</p>
 
-<p>
+<table>
+    <tr>
+        <th> ID </th>
+        <th> Project </th>
+        <th> Votes </th>
+        <th> Ratio </th>
+        <th> Created At </th>
+        <th> </th>
+    </tr>
+
+    {% for project in projects %}
+        <tr> 
+            <td> {{project.id}} </td>
+            <td> {{project.title}} </td>
+            <td> {{project.vote_total}} </td>
+            <td> {{project.vote_ratio}} </td>
+            <td> {{project.created_at}} </td>
+            <td> <a href="{% url 'project' project.id %}"> View </a> </td>
+        </tr>
+    {% endfor %}
+</table>
+
+<!-- <p>
 
     {% for project in projects%}
 
         <li> Name : <a href="{% url 'project' project.id %}">{{project.title}}</a> </li>
-        <li> Description : {{project.description}}</li>
+        <li> Description : {{project.created_at}}</li>
         <br>
     
         {% endfor %}
 
-</p>
+</p> -->
 
 {% endblock content %}

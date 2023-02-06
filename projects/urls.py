@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+#* Activate venv -> source bin/activate
 
 #* All urls associated to projects app defined here
 
