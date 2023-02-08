@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 
 # Create your views here.
 
@@ -6,6 +6,7 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 from .models import Project
+from .forms import ProjectForm
 
 # projectsList = [
 
@@ -53,3 +54,63 @@ def project(request,pk):
     #         projectObj = i
 
     return render(request,'projects/single-project.html',{'project':projectObj})
+
+#* CRUD operations using model forms
+
+#* Views for model forms
+
+def createProject(request):
+
+    #* Instantiate ProjectForm class
+    form = ProjectForm()
+
+    #* When model form is submitted, POST request is sent (form method is post)
+    if request.method == 'POST':
+        #print(request.POST)
+
+        #* Create form object with data passed from modelform (via request)
+        form = ProjectForm(request.POST)
+
+        #* Check if form object is valid
+        if form.is_valid():
+
+            #* Save the data in database
+            form.save()
+            #* Redirect user to home page once saved
+            return redirect('projects')
+
+    context = {'form':form}
+    return render(request,'projects/project_form.html',context)
+
+#* Pass parameter to identify which project to update
+def updateProject(request,pk):
+
+    #* Instance of form for project to be updated
+    project = Project.objects.get(id = pk)
+    form = ProjectForm(instance=project)
+
+    if request.method=='POST':
+
+        #* Update form with data from post and save in db
+        form = ProjectForm(request.POST,instance=project)
+        if form.is_valid():
+            form.save()
+            return redirect('projects')
+
+    context = {'form':form}
+ 
+    return render(request,'projects/project_form.html',context)
+
+def deleteProject(request,pk):
+
+    #* Object to be deleted
+    project = Project.objects.get(id=pk)
+    
+    #* When button for deletion is clicked, a POST request is sent
+    if request.method == 'POST':
+        #* Delete the object
+        project.delete()
+        return redirect('projects')
+
+    context = {'object' : project} 
+    return render(request,'projects/delete_template.html',context)
