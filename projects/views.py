@@ -69,7 +69,7 @@ def createProject(request):
         #print(request.POST)
 
         #* Create form object with data passed from modelform (via request)
-        form = ProjectForm(request.POST)
+        form = ProjectForm(request.POST,request.FILES)
 
         #* Check if form object is valid
         if form.is_valid():
@@ -92,7 +92,7 @@ def updateProject(request,pk):
     if request.method=='POST':
 
         #* Update form with data from post and save in db
-        form = ProjectForm(request.POST,instance=project)
+        form = ProjectForm(request.POST,request.FILES,instance=project)
         if form.is_valid():
             form.save()
             return redirect('projects')

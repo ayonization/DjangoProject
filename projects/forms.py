@@ -12,4 +12,4 @@ class ProjectForm(ModelForm):
         #* Model for which modelform is made
         model = Project
         #* Fields from model to be included in form
-        fields = ['title','description','demo_link','source_link','tags']
+        fields = ['title','featured_image','description','demo_link','source_link','tags']

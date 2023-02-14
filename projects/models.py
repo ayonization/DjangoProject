@@ -10,6 +10,9 @@ class Project(models.Model):
     #* Blank entries allowed in db (null=true)
     #* Blank post requests (form submits) allowed (blank=true)
     description = models.TextField(null=True,blank=True)
+
+    #* User uploaded image
+    featured_image = models.ImageField(null=True,blank=True,default='default.jpg')
     
     demo_link = models.CharField(max_length=2000,null=True,blank=True)
     source_link = models.CharField(max_length=2000,null=True,blank=True)

@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-_=m1_$hd!i=-w^n)6l0=e!^xrxqeingc^g!hmr2fw+hn0fbl#@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+#* Must be set if debug mode is false
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -123,6 +125,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+MEDIA_URL = '/images/'
+
+#* Registering path of static files folder
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'static')
+]
+
+#* Where to store user uploaded content
+MEDIA_ROOT = os.path.join(BASE_DIR,'static/images')
+
+#* Location of static files in production
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

@@ -16,9 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 #* When user goes to a url listed below, the corresponding function is called
 urlpatterns = [
     path('admin/', admin.site.urls),
     #* include urls defined in projects app
     path('',include('projects.urls'))
 ]
+
+#* Setting url route for user uploaded content
+urlpatterns += static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
+
+#* Setting staticfiles url for production
+urlpatterns += static(settings.STATIC_URL,document_root = settings.STATIC_ROOT)
