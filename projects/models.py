@@ -1,9 +1,13 @@
 from django.db import models
 import uuid
+from users.models import Profile
 # Create your models here.
 #* Define tables in database
 
 class Project(models.Model):
+
+    #* Many to one relationship 
+    owner = models.ForeignKey(Profile,null=True,blank=True,on_delete=models.SET_NULL)
 
     title = models.CharField(max_length=200)
     
@@ -43,7 +47,7 @@ class Review(models.Model):
         ('up','Up Vote'),
         ('down','Down Vote')
     )
-    #owner
+    
     #* One to Many Relationship
     #* Foreign key, which project is this review for?
     #* If project is deleted, delete (cascade) all associated reviews too

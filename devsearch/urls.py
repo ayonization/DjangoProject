@@ -23,7 +23,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     #* include urls defined in projects app
-    path('',include('projects.urls'))
+    #* urls with projects/ are defined in the projects app urlpatterns
+    path('projects/',include('projects.urls')),
+    path('',include('users.urls'))
 ]
 
 #* Setting url route for user uploaded content

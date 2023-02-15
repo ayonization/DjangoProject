@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     #*Registering created apps
     'projects.apps.ProjectsConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
